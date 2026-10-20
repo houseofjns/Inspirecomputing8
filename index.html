@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>House of J&amp;S | Inspire Computing Year 8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#c79b3b;--gold-light:#f5eddb;--ink:#282720;--muted:#5f5a50;
+  --line:#e9e2d3;--paper:#fbf9f4;--white:#fff;
+  --good:#236747;--good-bg:#eaf5ee;--bad:#a03c34;--bad-bg:#fbefed;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7;font-size:16px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--white);border-radius:9px;padding:13px 20px;font-size:15px;font-weight:500;transition:border-color .15s,background .15s}
+button:hover{border-color:var(--gold)}
+button:disabled{opacity:.4;cursor:not-allowed}
+header{position:sticky;top:0;z-index:9;background:var(--white);border-bottom:1px solid var(--line);padding:16px clamp(18px,5vw,72px);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{display:flex;gap:14px;align-items:center;min-width:0}
+.brand img{width:52px;height:52px;object-fit:contain;flex-shrink:0}
+.brand small{display:block;color:#a47c25;font-size:11px;letter-spacing:1.5px;font-weight:700}
+.brand b{display:block;font:700 24px 'Playfair Display',serif;white-space:nowrap}
+.brand span{display:block;font-size:12px;letter-spacing:1px;color:#777;text-transform:uppercase}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{border:0;color:#655f53;background:transparent;font-size:14px;padding:10px 14px}
+nav button.active{background:var(--gold-light);color:#926c1e;font-weight:700}
+#menu{display:none;font-size:22px;padding:8px 16px}
+.welcome{display:flex;align-items:center;gap:10px;font-size:13px;color:#926c1e;font-weight:600;margin-left:auto;margin-right:12px;white-space:nowrap;background:var(--gold-light);padding:8px 16px;border-radius:24px}
+.welcome .dot{width:10px;height:10px;border-radius:50%;background:#4caf50;box-shadow:0 0 0 3px #4caf5033}
+.welcome button{font-size:12px;padding:5px 12px;background:#fff;border-color:#e5dcc8;border-radius:20px}
+main{max-width:1440px;margin:auto}
+#hero{padding:60px clamp(20px,8vw,120px);display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;background:radial-gradient(circle at 80% 15%,#f5e9ca 0,transparent 32%),linear-gradient(120deg,#fff,#fbf8ef);min-height:460px}
+label,.kicker{color:#9b7425;letter-spacing:1.5px;font-size:12px;font-weight:700}
+h1{font:800 clamp(46px,5.5vw,72px)/1.05 'Playfair Display',serif;letter-spacing:-1px;margin:25px 0 20px}
+h1 em{color:#b4872b;font-style:normal}
+#hero p{font-size:17px;color:var(--muted);line-height:1.8;max-width:540px}
+.gold{background:var(--gold);color:white;border-color:var(--gold);box-shadow:0 6px 15px #c79b3b30}
+.meta{font-size:13px!important}
+.art{min-height:300px;position:relative;display:grid;place-items:center}
+.sun{position:absolute;width:270px;height:270px;border-radius:50%;background:linear-gradient(135deg,#f5df9c,#c99c3c);right:8%;top:0}
+.artcard{z-index:1;background:#282923;color:white;padding:25px 30px;width:290px;min-height:300px;box-shadow:17px 20px 0 #d8bd78;transform:rotate(2deg)}
+.artcard small{color:#dfc47e;letter-spacing:1.5px;font-size:11px}
+.symbol{font-size:60px;color:#d9b456;margin-top:28px}
+.artcard h2{font:700 36px/1.1 'Playfair Display',serif;margin:0 0 18px}
+.artcard hr{width:45px;margin-left:0;border:0;height:2px;background:#d7b052}
+.artcard p{font-size:13px!important;color:#ccc!important}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:0 clamp(20px,8vw,120px);background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stats div{text-align:center;padding:22px;border-right:1px solid var(--line)}
+.stats div:last-child{border:0}
+.stats b{display:block;font:700 30px 'Playfair Display',serif;color:#a77d25}
+.stats span{font-size:13px;color:var(--muted)}
+#view{padding:55px clamp(18px,8vw,120px) 80px;min-height:420px}
+.head{margin-bottom:28px}
+.head h2{font:700 42px 'Playfair Display',serif;margin:10px 0}
+.head p,.muted{font-size:15px;line-height:1.8;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:18px}
+.card{display:flex;flex-direction:column;min-height:220px}
+.num{background:var(--gold-light);color:#a47b25;border-radius:9px;padding:10px 16px;width:max-content;font-size:13px;font-weight:700;letter-spacing:.5px}
+.card h3,.lesson h3{font:700 24px 'Playfair Display',serif;margin:16px 0 8px;line-height:1.3}
+.card p{font-size:15px;color:var(--muted);line-height:1.7;flex:1}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button{font-size:13px;padding:10px 16px}
+.tabs button.active{background:#292a24;color:white;border-color:#292a24}
+.lesson{border:1px solid #eee6d6;padding:20px;border-radius:10px;margin:12px 0}
+.lesson p{font-size:16px;line-height:1.85;color:#5f5a50;margin:0}
+.vocab{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.word{background:#faf7ef;border:1px solid #f0e7d4;padding:16px;border-radius:9px;font-size:15px;line-height:1.6}
+.word b{display:block;color:#926c1e;margin-bottom:6px;font-size:16px}
+.callout{padding:16px 20px;background:#f7f0de;border-left:4px solid var(--gold);font-size:15px;line-height:1.7;color:#6d592b;margin:18px 0;border-radius:6px}
+.q{border:1px solid var(--line);background:white;border-radius:12px;padding:22px;margin:14px 0}
+.qtop{font-size:12px;letter-spacing:.8px;color:#987128;font-weight:700;margin-bottom:14px;line-height:1.6}
+.q h3{font-size:17px;line-height:1.65;margin:0 0 14px;font-weight:600}
+.options{display:grid;gap:10px}
+.opt{border:1px solid var(--line);border-radius:9px;padding:13px 16px;font-size:15px;display:flex;gap:10px;align-items:center;cursor:pointer;line-height:1.5}
+.opt:hover{background:#fbf8ef;border-color:#d9c99a}
+.opt input{accent-color:#b68a2d;width:18px;height:18px;flex-shrink:0}
+.q input[type=text],.q textarea,.q select{width:100%;padding:13px 16px;border:1.5px solid #ded6c5;border-radius:9px;background:#fffdf9;font:15px 'DM Sans',sans-serif;line-height:1.5}
+.q input[type=text]:focus,.q textarea:focus,.q select:focus{outline:none;border-color:var(--gold);background:#fff}
+.q textarea{min-height:90px;resize:vertical}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pairs .word{font-size:15px}
+.pairs .word select{margin-top:6px;font-size:14px;padding:10px 12px}
+.feedback{padding:14px 16px;border-radius:8px;font-size:14px;line-height:1.7;margin-top:14px}
+.good{background:var(--good-bg);color:var(--good)}
+.bad{background:var(--bad-bg);color:var(--bad)}
+.timer{background:#282923;color:#f4d783;padding:14px 22px;border-radius:10px;font-weight:700;font-size:22px;letter-spacing:2px}
+.bar{height:8px;background:#eee7d8;border-radius:9px;overflow:hidden;margin:18px 0}
+.bar span{display:block;background:var(--gold);height:100%;transition:width .3s}
+.result{font:700 56px 'Playfair Display',serif;color:#a77d25}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.three div{background:#faf7ef;border-radius:9px;padding:18px}
+.three b{display:block;font-size:26px}
+.three span{font-size:12px;color:var(--muted)}
+.hidden{display:none!important}
+footer{background:#25261f;color:white;padding:36px clamp(20px,8vw,120px);display:grid;grid-template-columns:1fr 1fr;gap:16px 25px}
+footer b{font:700 24px 'Playfair Display',serif}
+footer span{color:#c9b77f;text-transform:uppercase;font-size:12px}
+footer p{font-size:14px;color:#ccc;margin:0;line-height:1.6}
+.links{display:flex;gap:18px;flex-wrap:wrap}
+.links a{font-size:13px;color:#e5cd88;text-decoration:none}
+.links a:hover{text-decoration:underline}
+footer small{grid-column:1/-1;border-top:1px solid #ffffff22;padding-top:16px;color:#aaa;font-size:12px;line-height:1.6}
+.login-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%,#f5e9ca 0,transparent 45%),#fbf9f4;display:flex;align-items:center;justify-content:center;z-index:999;padding:20px}
+.login-overlay.hidden{display:none}
+.login-box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:44px 38px;max-width:460px;width:100%;text-align:center;box-shadow:0 25px 70px rgba(0,0,0,0.12)}
+.login-box img{width:80px;height:80px;object-fit:contain;margin-bottom:10px}
+.login-box .kicker{display:block;margin-bottom:8px;font-size:12px}
+.login-box h2{font:700 34px 'Playfair Display',serif;margin:0 0 8px;color:var(--ink)}
+.login-box p{font-size:15px;color:var(--muted);margin:0 0 26px;line-height:1.6}
+.login-box input{width:100%;padding:15px 18px;border:1.5px solid var(--line);border-radius:11px;font:16px 'DM Sans',sans-serif;margin-bottom:14px;background:#fffdf9}
+.login-box input:focus{outline:none;border-color:var(--gold);background:#fff;box-shadow:0 0 0 4px #c79b3b15}
+.login-box .gold{width:100%;padding:16px;font-weight:700;font-size:16px;margin-top:6px}
+.login-error{color:var(--bad);font-size:14px;min-height:20px;margin-bottom:8px;font-weight:600}
+.login-hint{font-size:13px;color:#a47c25;margin-top:20px;letter-spacing:.3px;line-height:1.5}
+.review-q{margin:16px 0}
+.review-block{margin-top:16px}
+.review-line{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed #eee6d6;font-size:15px;align-items:flex-start;flex-wrap:wrap}
+.review-line:last-child{border-bottom:0}
+.review-label{font-weight:700;color:#926c1e;min-width:150px;flex-shrink:0;font-size:12px;text-transform:uppercase;letter-spacing:.8px;padding-top:3px}
+.review-ans{flex:1;line-height:1.7;min-width:220px;word-break:break-word;font-size:15px}
+.review-ans.bad{color:var(--bad);font-weight:600}
+.review-ans.good{color:var(--good);font-weight:600}
+.review-ans.correct{color:var(--good);font-weight:700}
+.review-why{margin-top:16px;padding:14px 18px;background:#faf7ef;border-radius:10px;border-left:4px solid var(--gold);font-size:14px;line-height:1.75;color:#5f5a50}
+.text-good{color:var(--good);font-weight:700}
+.text-bad{color:var(--bad);font-weight:700}
+@media(max-width:850px){
+  header{flex-wrap:wrap}
+  #menu{display:block;margin-left:auto}
+  nav{display:none;flex-direction:column;width:100%;order:5}
+  nav.open{display:flex}
+  nav button{text-align:left;font-size:15px;padding:12px 16px}
+  #hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .welcome{margin-left:auto;margin-right:0;order:4}
+}
+@media(max-width:560px){
+  body{font-size:15px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stats div:nth-child(2){border-right:0}
+  .stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .grid,.vocab,.three,.pairs{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr}
+  .links{grid-column:1}
+  h1{font-size:42px}
+  .head h2{font-size:32px}
+  .card h3,.lesson h3{font-size:21px}
+  .welcome{width:100%;justify-content:center;order:4;margin:10px 0 0 0}
+  .login-box{padding:34px 26px}
+  .login-box h2{font-size:28px}
+  .review-label{min-width:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-box">
+    <img src="logo1.png" onerror="this.style.display='none'" alt="J&amp;S logo">
+    <label class="kicker">HOUSE OF J&amp;S</label>
+    <h2>Student Login</h2>
+    <p>Enter your name and class password to begin Year 8.</p>
+    <form id="loginForm" autocomplete="off">
+      <input type="text" id="studentNameInput" placeholder="Student Name" required maxlength="40">
+      <input type="password" id="studentPassInput" placeholder="Class Password" required>
+      <div id="loginError" class="login-error"></div>
+      <button type="submit" class="gold">Enter Learning Hub →</button>
+    </form>
+    <div class="login-hint">🔑 Class password is provided by your teacher</div>
+  </div>
+</div>
+
+<header>
+  <div class="brand">
+    <img src="logo1.png" onerror="this.style.display='none'" alt="J&amp;S logo">
+    <div>
+      <small>LEARN • CREATE • GROW</small>
+      <b>House of J&amp;S</b>
+      <span>Computer Training Center</span>
+    </div>
+  </div>
+  <div class="welcome" id="welcomeChip" style="display:none">
+    <span class="dot"></span>
+    <span id="welcomeName">Student</span>
+    <button onclick="logout()">Logout</button>
+  </div>
+  <button id="menu">☰</button>
+  <nav>
+    <button data-view="home" class="active">Home</button>
+    <button data-view="study">Study Notes</button>
+    <button data-view="practice">Workbook Practice</button>
+    <button data-view="exam">Unit Exams</button>
+    <button data-view="progress">My Progress</button>
+  </nav>
+</header>
+
+<main>
+  <section id="hero">
+    <div>
+      <label>YEAR 8 • PEARSON iLOWERSECONDARY</label>
+      <h1>Inspire Computing <em>Year 8.</em></h1>
+      <p>Binary &amp; online graphics, data on the web, spreadsheets, analysing data, Python programming, and software &amp; communication.</p>
+      <button class="gold" onclick="go('study')">Explore Study Notes ↗</button>
+      <button onclick="go('exam')">Start an Exam</button>
+      <p class="meta">✦ 6 units　 ◷ 60-minute exams　 ✓ Instant feedback</p>
+    </div>
+    <div class="art">
+      <div class="sun"></div>
+      <div class="artcard">
+        <small>J&amp;S LEARNING HUB</small>
+        <div class="symbol">⌘</div>
+        <h2>Think. Code.<br>Explore.</h2>
+        <hr>
+        <p>Curiosity is your superpower.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><b>06</b><span>Study units</span></div>
+    <div><b>60</b><span>Question parts</span></div>
+    <div><b>80</b><span>Marks per exam</span></div>
+    <div><b>01:00</b><span>Hour timer</span></div>
+  </section>
+
+  <section id="view"></section>
+</main>
+
+<footer>
+  <div>
+    <b>House of J&amp;S</b>
+    <span>Computer Training Center</span>
+    <p style="margin-top:8px">Learning with confidence, one skill at a time.</p>
+  </div>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://www.pearson.com/content/dam/one-dot-com/one-dot-com/international-schools/pdfs/primary-curriculum/iprimary/InspireComputing/InspireComputing-Y8-WB-answers.pdf">Official Pearson Year 8 Workbook Answers ↗</a>
+  </div>
+  <small>Independent learning companion. Pearson materials remain the property of their copyright holder.</small>
+</footer>
+
+<script>
+const CLASS_PASSWORD = 'HJS2026';
+let studentName = localStorage.getItem('jsStudentName_Y8') || '';
+const loginOverlay = document.getElementById('loginOverlay');
+const loginForm = document.getElementById('loginForm');
+const loginError = document.getElementById('loginError');
+const welcomeChip = document.getElementById('welcomeChip');
+const welcomeName = document.getElementById('welcomeName');
+
+function applyLoginState() {
+  if (studentName) {
+    loginOverlay.classList.add('hidden');
+    welcomeChip.style.display = 'flex';
+    welcomeName.textContent = studentName;
+  } else {
+    loginOverlay.classList.remove('hidden');
+    welcomeChip.style.display = 'none';
+  }
+}
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('studentNameInput').value.trim();
+  const pass = document.getElementById('studentPassInput').value;
+  loginError.textContent = '';
+  if (!name) { loginError.textContent = 'Please enter your name.'; return; }
+  if (pass !== CLASS_PASSWORD) { loginError.textContent = '❌ Incorrect password. Please check with your teacher.'; return; }
+  studentName = name;
+  localStorage.setItem('jsStudentName_Y8', studentName);
+  document.getElementById('studentPassInput').value = '';
+  applyLoginState();
+  go('home');
+});
+function logout() {
+  if (!confirm('Log out and switch student?')) return;
+  studentName = '';
+  localStorage.removeItem('jsStudentName_Y8');
+  loginOverlay.classList.remove('hidden');
+  welcomeChip.style.display = 'none';
+  document.getElementById('studentNameInput').value = '';
+  document.getElementById('studentPassInput').value = '';
+  loginError.textContent = '';
+}
+
+/* ============================================================
+   YEAR 8 — 6 UNITS (verified from Pearson Y8 Workbook Answers PDF)
+   ============================================================ */
+const embeddedUnits = [
+// ---------- UNIT 1 ----------
+{
+  id:1,title:"Binary and Online Graphics",
+  sub:"Vector graphics, bitmaps, pixels, colour depth and digital image properties",
+  lessons:[
+    ["Vector graphics","A vector graphic is made from lines and shapes defined by coordinates, not pixels. It can be scaled without losing quality and is ideal for geometric designs."],
+    ["Creating a vector graphic","A vector graphic is plotted using coordinates in a similar style to a dot-to-dot image. Key properties include start point, end point, line type, curves and colours."],
+    ["Bitmaps","A bitmap is an image file made up of dots, or pixels. Each pixel can be a different colour and the more pixels, the more detailed the image."],
+    ["Vectors vs bitmaps","Vectors scale without quality loss and are small; bitmaps are better for photos but lose quality when enlarged. Choose based on the task."],
+    ["Binary and pixels","All computer data must be converted to binary to be understood. Each pixel is represented by a binary value."],
+    ["Colour depth","Colour depth is the number of colours an image can contain, represented by bits per pixel. More bits = more colours = larger file."],
+    ["Digital image properties","Pixel size, dimensions, resolution and colour depth determine image quality and file size. File size = pixels × colour depth."],
+    ["Calculating file size","File size in bits = number of pixels × colour depth. Divide by 8 for bytes."],
+    ["Resolution","Resolution is the number of pixels in one square inch (PPI/DPI). Higher resolution means higher quality but larger file size."],
+    ["Choosing formats","Common bitmap formats include BMP, JPG, GIF, TIFF and PNG. Vector formats include SVG. Choose based on use (photos vs logos)."]
+  ],
+  vocab:[["Vector graphic","An image made from lines and shapes defined by coordinates."],["Bitmap","An image made up of pixels."],["Pixel","Short for picture element; a single dot in a bitmap."],["Resolution","The number of pixels in one square inch."],["Colour depth","The number of colours each pixel can show (bits per pixel)."],["Gradient","A change from one colour to another."],["Scaling","Changing the size of an image."],["Coordinates","Numbers that define the position of points in a vector graphic."],["PPI","Pixels per inch — a measure of resolution."],["File size","Pixels × colour depth (in bits)."]],
+  questions:[
+    {type:"mcq",q:"What is a vector graphic?",opts:["An image made from lines and shapes defined by coordinates","An image made of pixels","A type of camera"],a:0,why:"Vector graphic: made from lines and shapes defined by coordinates."},
+    {type:"mcq",q:"What is a bitmap?",opts:["An image made up of pixels","An image made from lines","A type of vector"],a:0,why:"Bitmap: an image file made up of dots, or pixels."},
+    {type:"mcq",q:"What is a pixel?",opts:["Short for picture element","A type of vector","A colour depth"],a:0,why:"Pixel: short for picture element."},
+    {type:"mcq",q:"What is resolution?",opts:["The number of pixels in one square inch","The number of colours","The file size"],a:0,why:"Resolution: the number of pixels in one square inch."},
+    {type:"mcq",q:"What is colour depth?",opts:["The number of colours each pixel can show","The number of pixels","The file format"],a:0,why:"Colour depth: the number of colours each pixel can show, represented by bits per pixel."},
+    {type:"mcq",q:"What is a gradient?",opts:["A change from one colour to another","A type of vector","A file size"],a:0,why:"Gradient: describes the change from one colour to another."},
+    {type:"mcq",q:"What happens when you enlarge a bitmap?",opts:["Quality drops","Quality improves","Nothing changes"],a:0,why:"Increasing the physical size of a bitmap reduces resolution and quality."},
+    {type:"mcq",q:"Which is better for high-quality digital photos?",opts:["Bitmap","Vector","Neither"],a:0,why:"Bitmaps are better for high-quality digital photos."},
+    {type:"mcq",q:"Which can be resized without losing quality?",opts:["Vector","Bitmap","Neither"],a:0,why:"Vectors can be scaled without losing quality."},
+    {type:"mcq",q:"What is file size in bits?",opts:["Pixels × colour depth","Pixels + colour depth","Pixels ÷ colour depth"],a:0,why:"File size (bits) = pixels × colour depth."},
+    {type:"mcq",q:"Which format is a vector?",opts:["SVG","JPG","PNG"],a:0,why:"SVG is a vector format."},
+    {type:"mcq",q:"Which is a common bitmap format?",opts:["JPG","SVG","DXF"],a:0,why:"JPG is a common bitmap format."},
+    {type:"mcq",q:"What does PPI stand for?",opts:["Pixels per inch","Points per inch","Pictures per inch"],a:0,why:"PPI: pixels per inch."},
+    {type:"mcq",q:"What does 8 bits per pixel allow?",opts:["256 colours","2 colours","16 colours"],a:0,why:"8 bits = 2^8 = 256 colours."},
+    {type:"mcq",q:"What does 1 bit per pixel allow?",opts:["2 colours","4 colours","8 colours"],a:0,why:"1 bit = 2^1 = 2 colours."},
+    {type:"mcq",q:"Why must data be converted to binary?",opts:["So the computer can understand it","To make it smaller","To change the colour"],a:0,why:"All computer data must be converted to binary to be understood."},
+    {type:"mcq",q:"What is a disadvantage of bitmaps?",opts:["Cannot be enlarged without losing quality","Small file size","Easy to edit"],a:0,why:"Bitmaps cannot be made larger without losing quality."},
+    {type:"mcq",q:"What is an advantage of vectors?",opts:["Can be scaled without losing quality","Better for photos","Higher resolution"],a:0,why:"Vectors can be scaled without losing quality."},
+    {type:"mcq",q:"What is a vector plotted using?",opts:["Coordinates","Pixels","Colours only"],a:0,why:"Vectors are plotted using coordinates, like a dot-to-dot."},
+    {type:"mcq",q:"What does DPI stand for?",opts:["Dots per inch","Data per inch","Digital per inch"],a:0,why:"DPI: dots per inch."},
+    {type:"fill",q:"A __________ graphic is made from lines and shapes defined by coordinates.",opts:["vector","bitmap","pixel"],a:"vector",why:"Vector graphic: made from lines and shapes."},
+    {type:"fill",q:"A __________ is an image made up of pixels.",opts:["bitmap","vector","gradient"],a:"bitmap",why:"Bitmap: made up of pixels."},
+    {type:"fill",q:"A __________ is short for picture element.",opts:["pixel","vector","bitmap"],a:"pixel",why:"Pixel: short for picture element."},
+    {type:"fill",q:"__________ is the number of pixels in one square inch.",opts:["Resolution","Colour depth","File size"],a:"Resolution",why:"Resolution: pixels per square inch."},
+    {type:"fill",q:"__________ depth is the number of colours each pixel can show.",opts:["Colour","Pixel","File"],a:"Colour",why:"Colour depth: number of colours per pixel."},
+    {type:"fill",q:"A __________ is a change from one colour to another.",opts:["gradient","bitmap","vector"],a:"gradient",why:"Gradient: change from one colour to another."},
+    {type:"fill",q:"__________ means changing the size of an image.",opts:["Scaling","Cropping","Filtering"],a:"Scaling",why:"Scaling: changing the size of an image."},
+    {type:"fill",q:"File size in bits = pixels × __________ depth.",opts:["colour","pixel","file"],a:"colour",why:"File size = pixels × colour depth."},
+    {type:"fill",q:"__________ is a vector format.",opts:["SVG","JPG","PNG"],a:"SVG",why:"SVG: a vector format."},
+    {type:"fill",q:"A bitmap is made up of __________.",opts:["pixels","lines","shapes"],a:"pixels",why:"Bitmap: made up of dots, or pixels."},
+    {type:"tf",q:"A vector graphic is made from pixels.",a:false,why:"Vectors are made from lines and shapes, not pixels."},
+    {type:"tf",q:"A bitmap is made up of pixels.",a:true,why:"Bitmap: made up of dots, or pixels."},
+    {type:"tf",q:"Vectors can be scaled without losing quality.",a:true,why:"Vectors can be scaled without losing quality."},
+    {type:"tf",q:"Bitmaps are better for high-quality photos.",a:true,why:"Bitmaps are better for photos."},
+    {type:"tf",q:"Increasing the size of a bitmap improves quality.",a:false,why:"Increasing size reduces resolution and quality."},
+    {type:"tf",q:"Resolution is the number of colours a pixel can show.",a:false,why:"Colour depth is the number of colours; resolution is pixels per inch."},
+    {type:"tf",q:"More bits per pixel allow more colours.",a:true,why:"The greater the number of bits, the more colours can be shown."},
+    {type:"tf",q:"File size = pixels × colour depth.",a:true,why:"File size (bits) = pixels × colour depth."},
+    {type:"tf",q:"SVG is a vector format.",a:true,why:"SVG is a vector format."},
+    {type:"tf",q:"JPG is a vector format.",a:false,why:"JPG is a bitmap format."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Vector graphic","An image made from lines and shapes defined by coordinates."],["Bitmap","An image made up of pixels."],["Pixel","Short for picture element."],["Resolution","The number of pixels in one square inch."],["Colour depth","The number of colours each pixel can show."],["Gradient","A change from one colour to another."],["Scaling","Changing the size of an image."],["Coordinates","Numbers that define the position of points."],["PPI","Pixels per inch."],["File size","Pixels × colour depth."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"Explain the difference between a vector graphic and a bitmap.",a:"A vector graphic is made from lines and shapes defined by coordinates and can be scaled without quality loss. A bitmap is made up of pixels and loses quality when enlarged.",why:"A good answer contrasts vectors and bitmaps."},
+    {type:"short",q:"What is colour depth?",a:"Colour depth is the number of colours an image can contain, represented by the number of bits per pixel. More bits = more colours.",why:"A good answer defines colour depth."},
+    {type:"short",q:"How do you calculate the file size of an image in bits?",a:"File size in bits = number of pixels × colour depth. Divide by 8 for bytes.",why:"A good answer gives the formula."},
+    {type:"short",q:"Why are vectors better for logos?",a:"Vectors can be scaled to any size without losing quality, which is important for logos that appear on many products and in many sizes.",why:"A good answer explains the scaling benefit."},
+    {type:"short",q:"Why are bitmaps better for photos?",a:"Bitmaps can capture high-resolution detail and are better suited to photographs with many colours and gradients.",why:"A good answer explains the photo benefit."},
+    {type:"short",q:"What is resolution?",a:"Resolution is the number of pixels in one square inch (PPI/DPI). Higher resolution means higher quality but larger file size.",why:"A good answer defines resolution."},
+    {type:"short",q:"What is a gradient?",a:"A gradient is a gradual change from one colour to another.",why:"A good answer defines a gradient."},
+    {type:"short",q:"Why must all data be converted to binary?",a:"All computer data must be converted to binary so the computer can understand and process it.",why:"A good answer explains the need for binary."},
+    {type:"short",q:"What happens to a bitmap when it is enlarged?",a:"Increasing the physical size of a bitmap reduces its resolution, lowering the quality of the image.",why:"A good answer explains the quality loss."},
+    {type:"short",q:"Name two vector formats and two bitmap formats.",a:"Vector formats: SVG, AI. Bitmap formats: JPG, PNG (also BMP, GIF, TIFF).",why:"A good answer names two of each."}
+  ]
+},
+// ---------- UNIT 2 ----------
+{
+  id:2,title:"Data on the Web",
+  sub:"Bits, bytes, binary, storage, bandwidth, compression and RLE",
+  lessons:[
+    ["Bits, bytes and nibbles","A bit is a single binary digit (0 or 1). 4 bits = 1 nibble. 8 bits = 1 byte. Data of all kinds is stored as binary."],
+    ["Storage capacity","Storage is measured in bytes and multiples: 1 KiB = 1024 bytes; 1 MiB = 1024 KiB; 1 GiB = 1024 MiB. Base 2 is used for binary bits; base 10 for bytes."],
+    ["Binary and denary","Binary is base-2 (0,1). Denary is base-10 (0–9). Convert by adding place values (1, 2, 4, 8, 16, 32, 64, 128)."],
+    ["Internet bandwidth","Bandwidth is the amount of data that can be sent in one second. File transfer speed = file size ÷ bandwidth."],
+    ["Creating a bandwidth calculator","A bandwidth calculator uses variables (fileSize, bandwidth, transferTime) and a test table to check functionality."],
+    ["Compression","Compression reduces file size. Lossy removes data that cannot be restored; lossless allows the original to be restored exactly."],
+    ["Run Length Encoding (RLE)","RLE is a lossless compression method. It analyses a data string for repeated characters (e.g. AAAAABBBCCCC → 5A3B4C)."],
+    ["File formats and compression","Different formats use different compression. TXT is uncompressed; JPG uses lossy; PNG uses lossless."],
+    ["Calculating file sizes","File size in bytes = (pixels × colour depth) ÷ 8. Storage calculations often use KiB and MiB."],
+    ["Choosing compression","Choose lossless for text and important data; lossy for images and audio where small quality loss is acceptable."]
+  ],
+  vocab:[["Bit","A single binary digit (0 or 1)."],["Byte","8 bits."],["Nibble","4 bits."],["KiB","1024 bytes."],["MiB","1024 KiB."],["Bandwidth","The amount of data that can be sent in one second."],["Compression","Reducing file size."],["Lossy","Compression that removes data permanently."],["Lossless","Compression that allows exact restoration."],["RLE","Run Length Encoding — a lossless compression method."]],
+  questions:[
+    {type:"mcq",q:"How many bits are in a byte?",opts:["8","4","16"],a:0,why:"1 byte = 8 bits."},
+    {type:"mcq",q:"How many bits are in a nibble?",opts:["4","8","2"],a:0,why:"4 bits = 1 nibble."},
+    {type:"mcq",q:"How many bytes are in 1 KiB?",opts:["1024","1000","512"],a:0,why:"1 kibibyte = 1024 bytes."},
+    {type:"mcq",q:"How many KiB are in 1 MiB?",opts:["1024","1000","512"],a:0,why:"1 mebibyte = 1024 kibibytes."},
+    {type:"mcq",q:"What is bandwidth?",opts:["The amount of data that can be sent in one second","The size of a file","The number of bits"],a:0,why:"Bandwidth: the amount of data that can be sent in one second."},
+    {type:"mcq",q:"How is transfer speed calculated?",opts:["File size ÷ bandwidth","File size × bandwidth","Bandwidth ÷ file size"],a:0,why:"File transfer speed = file size ÷ bandwidth."},
+    {type:"mcq",q:"What is compression?",opts:["Reducing file size","Increasing file size","Changing file format"],a:0,why:"Compression: reduction of file size."},
+    {type:"mcq",q:"Which compression allows exact restoration?",opts:["Lossless","Lossy","Neither"],a:0,why:"Lossless allows the original file to be restored exactly."},
+    {type:"mcq",q:"Which compression removes data permanently?",opts:["Lossy","Lossless","Neither"],a:0,why:"Lossy deletes part of the file, which cannot be restored."},
+    {type:"mcq",q:"What does RLE stand for?",opts:["Run Length Encoding","Rapid Loss Encoding","Reduced Length Encoding"],a:0,why:"RLE: Run Length Encoding."},
+    {type:"mcq",q:"What does AAAAABBBCCCC compress to with RLE?",opts:["5A3B4C","4A3B5C","5A4B3C"],a:0,why:"5 A's, 3 B's, 4 C's = 5A3B4C."},
+    {type:"mcq",q:"What is 58 in binary?",opts:["111010","101010","110010"],a:0,why:"58 = 32 + 16 + 8 + 2 = 111010."},
+    {type:"mcq",q:"What is 01010100 in denary?",opts:["84","64","74"],a:0,why:"01010100 = 64 + 16 + 4 = 84."},
+    {type:"mcq",q:"Which is a lossless format?",opts:["PNG","JPG","MP3"],a:0,why:"PNG uses lossless compression."},
+    {type:"mcq",q:"Which is a lossy format?",opts:["JPG","PNG","TXT"],a:0,why:"JPG uses lossy compression."},
+    {type:"mcq",q:"Why is lossy compression not used for text?",opts:["Characters would be lost","It makes files too small","It is too slow"],a:0,why:"Lossy compression is never used for text as characters would be lost."},
+    {type:"mcq",q:"What is a test table used for?",opts:["To check a program works","To store data","To compress files"],a:0,why:"A test table allows the designer to check functionality."},
+    {type:"mcq",q:"What does the / operator do in Python?",opts:["Divide","Multiply","Add"],a:0,why:"/ is the divide operator."},
+    {type:"mcq",q:"What is base-2?",opts:["Binary","Denary","Hexadecimal"],a:0,why:"Base-2 is binary."},
+    {type:"mcq",q:"What is base-10?",opts:["Denary","Binary","Hexadecimal"],a:0,why:"Base-10 is denary."},
+    {type:"fill",q:"A __________ is a single binary digit.",opts:["bit","byte","nibble"],a:"bit",why:"Bit: a single binary digit."},
+    {type:"fill",q:"A __________ is 8 bits.",opts:["byte","bit","nibble"],a:"byte",why:"Byte: 8 bits."},
+    {type:"fill",q:"A __________ is 4 bits.",opts:["nibble","byte","bit"],a:"nibble",why:"Nibble: 4 bits."},
+    {type:"fill",q:"1 KiB = __________ bytes.",opts:["1024","1000","512"],a:"1024",why:"1 KiB = 1024 bytes."},
+    {type:"fill",q:"__________ is the amount of data that can be sent in one second.",opts:["Bandwidth","Compression","RLE"],a:"Bandwidth",why:"Bandwidth: data per second."},
+    {type:"fill",q:"__________ reduces file size.",opts:["Compression","Bandwidth","RLE"],a:"Compression",why:"Compression: reduces file size."},
+    {type:"fill",q:"__________ compression removes data that cannot be restored.",opts:["Lossy","Lossless","RLE"],a:"Lossy",why:"Lossy removes data permanently."},
+    {type:"fill",q:"__________ compression allows exact restoration.",opts:["Lossless","Lossy","RLE"],a:"Lossless",why:"Lossless allows exact restoration."},
+    {type:"fill",q:"__________ is a lossless compression method using repeated characters.",opts:["RLE","Bandwidth","Lossy"],a:"RLE",why:"RLE: Run Length Encoding."},
+    {type:"fill",q:"File transfer speed = file size ÷ __________.",opts:["bandwidth","compression","resolution"],a:"bandwidth",why:"Transfer speed = file size ÷ bandwidth."},
+    {type:"tf",q:"1 byte = 8 bits.",a:true,why:"1 byte = 8 bits."},
+    {type:"tf",q:"1 nibble = 8 bits.",a:false,why:"1 nibble = 4 bits."},
+    {type:"tf",q:"1 MiB = 1024 KiB.",a:true,why:"1 MiB = 1024 KiB."},
+    {type:"tf",q:"Bandwidth is the size of a file.",a:false,why:"Bandwidth is the amount of data sent per second."},
+    {type:"tf",q:"Lossy compression allows exact restoration.",a:false,why:"Lossy removes data permanently."},
+    {type:"tf",q:"Lossless compression allows exact restoration.",a:true,why:"Lossless allows exact restoration."},
+    {type:"tf",q:"RLE is a lossless compression method.",a:true,why:"RLE is lossless."},
+    {type:"tf",q:"RLE compresses AAAAABBBCCCC to 5A3B4C.",a:true,why:"5A3B4C is the RLE version."},
+    {type:"tf",q:"Lossy compression is used for text files.",a:false,why:"Lossy is never used for text as characters would be lost."},
+    {type:"tf",q:"PNG is a lossless format.",a:true,why:"PNG uses lossless compression."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Bit","A single binary digit (0 or 1)."],["Byte","8 bits."],["Nibble","4 bits."],["KiB","1024 bytes."],["MiB","1024 KiB."],["Bandwidth","The amount of data that can be sent in one second."],["Compression","Reducing file size."],["Lossy","Compression that removes data permanently."],["Lossless","Compression that allows exact restoration."],["RLE","Run Length Encoding — a lossless compression method."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is the difference between a bit, a nibble and a byte?",a:"A bit is a single binary digit; a nibble is 4 bits; a byte is 8 bits.",why:"A good answer defines all three units."},
+    {type:"short",q:"How many bytes are in 1 KiB and 1 MiB?",a:"1 KiB = 1024 bytes; 1 MiB = 1024 KiB = 1,048,576 bytes.",why:"A good answer gives the correct values."},
+    {type:"short",q:"What is bandwidth?",a:"Bandwidth is the amount of data that can be sent in one second.",why:"A good answer defines bandwidth."},
+    {type:"short",q:"How do you calculate transfer speed?",a:"Transfer speed = file size ÷ bandwidth.",why:"A good answer gives the formula."},
+    {type:"short",q:"What is compression? Give one reason it is used.",a:"Compression reduces file size. It is used to attach documents to emails, save storage, transfer files and speed up downloads.",why:"A good answer defines compression and gives a reason."},
+    {type:"short",q:"What is the difference between lossy and lossless compression?",a:"Lossy removes data that cannot be restored; lossless allows the original file to be restored exactly.",why:"A good answer contrasts the two."},
+    {type:"short",q:"Why is lossy compression not used for text?",a:"Lossy compression deletes part of the file; for text, characters would be lost, making the text unreadable.",why:"A good answer explains the risk to text."},
+    {type:"short",q:"What is Run Length Encoding (RLE)?",a:"RLE is a lossless compression method that analyses a data string for repeated characters and represents them with a count and the character.",why:"A good answer defines RLE."},
+    {type:"short",q:"Compress AAAAABBBCCCC using RLE.",a:"5A3B4C.",why:"A good answer gives the RLE version."},
+    {type:"short",q:"What is a test table used for?",a:"A test table allows the designer to check the functionality of a program through a series of tests.",why:"A good answer explains test tables."}
+  ]
+},
+// ---------- UNIT 3 ----------
+{
+  id:3,title:"Processing Data",
+  sub:"Hardware, wearable tech, logo design, spreadsheets, modelling and environmental impact",
+  lessons:[
+    ["Computer hardware","Hardware is the physical parts of a computer. Key components include the CPU (brain), memory (RAM), power supply unit, hard drive and motherboard."],
+    ["Wearable technology","Wearable technology is any internet-connected device worn on the person, such as smartwatches, smart glasses and fitness trackers."],
+    ["Logo design","A logo is an original graphic representing a brand. Consider construction (bitmap or vector), transferability, content, theme and whether it is text or graphic based."],
+    ["Introduction to spreadsheets","A spreadsheet is a document for entering numerical data into rows and columns for analysis, sorting and calculations. Uses include finance, school data and recording results."],
+    ["Spreadsheet formulas and functions","Formulas start with = and perform calculations. Functions like SUM, AVERAGE, MAX and MIN perform built-in calculations over ranges."],
+    ["Spreadsheet modelling","Modelling allows changing variables to recreate real situations or predict outcomes. Goal seek adjusts a variable to achieve a desired result."],
+    ["Environmental impact of technology","Technology uses rare materials (gold, silver, copper) and energy. E-waste causes pollution. Solutions include recycling, energy efficiency and upgradability."],
+    ["Presenting data","Charts present data visually: pie (parts of a whole), line (change over time), bar/column (compare categories), scatter (connection between two sets)."],
+    ["Surveys and questionnaires","Surveys gather data. Consider audience, confusion, language and sample size. Avoid leading questions. Data can be qualitative or quantitative."],
+    ["Advanced spreadsheet functions","COUNT counts values in a range. COUNTIF counts values meeting specific criteria."]
+  ],
+  vocab:[["Hardware","The physical parts of a computer."],["CPU","Central processing unit — the brain of the computer."],["RAM","Short-term memory storing program data."],["Motherboard","The main circuit board."],["Wearable technology","Internet-connected devices worn on the person."],["Logo","An original graphic representing a brand."],["Spreadsheet","A document for entering and analysing numerical data."],["Formula","A calculation starting with =."],["Function","A built-in calculation like SUM or AVERAGE."],["E-waste","Discarded electronic equipment."]],
+  questions:[
+    {type:"mcq",q:"What is hardware?",opts:["The physical parts of a computer","The programs installed","A type of file"],a:0,why:"Hardware: physical objects we can pick up."},
+    {type:"mcq",q:"What does the CPU do?",opts:["Carries out all processing","Stores files","Provides power"],a:0,why:"CPU: the brain of the computer, carries out processing."},
+    {type:"mcq",q:"What is RAM?",opts:["Short-term memory","Long-term storage","A power supply"],a:0,why:"RAM: short-term memory storing program data."},
+    {type:"mcq",q:"What is wearable technology?",opts:["Internet-connected devices worn on the person","Desktop computers","Games consoles"],a:0,why:"Wearable technology: internet-connected devices worn on the person."},
+    {type:"mcq",q:"What is a logo?",opts:["An original graphic representing a brand","A type of spreadsheet","A hardware component"],a:0,why:"Logo: an original graphic representing a product, brand or service."},
+    {type:"mcq",q:"What is a spreadsheet?",opts:["A document for entering and analysing numerical data","A type of hardware","A logo"],a:0,why:"Spreadsheet: a document for numerical data in rows and columns."},
+    {type:"mcq",q:"What does SUM do?",opts:["Displays the total of values","Displays the highest value","Displays the average"],a:0,why:"SUM: displays the total of all values in a range."},
+    {type:"mcq",q:"What does AVERAGE do?",opts:["Displays the average value","Displays the highest","Displays the lowest"],a:0,why:"AVERAGE: displays the average value."},
+    {type:"mcq",q:"What does MAX do?",opts:["Displays the highest value","Displays the lowest","Displays the total"],a:0,why:"MAX: displays the highest value."},
+    {type:"mcq",q:"What does goal seek do?",opts:["Adjusts a variable to achieve a desired outcome","Deletes data","Creates charts"],a:0,why:"Goal seek adjusts a variable until a desired outcome is created."},
+    {type:"mcq",q:"What is e-waste?",opts:["Discarded electronic equipment","A type of email","A spreadsheet function"],a:0,why:"E-waste: discarded electronic equipment."},
+    {type:"mcq",q:"Which chart shows parts of a whole?",opts:["Pie","Line","Scatter"],a:0,why:"Pie: ideal for showing parts of a whole."},
+    {type:"mcq",q:"Which chart shows change over time?",opts:["Line","Pie","Bar"],a:0,why:"Line: ideal for showing changing values over time."},
+    {type:"mcq",q:"Which chart compares categories?",opts:["Bar/column","Line","Pie"],a:0,why:"Bar/column: displays the value of similar items against the same quantity."},
+    {type:"mcq",q:"What is a leading question?",opts:["A question that suggests a specific answer","A question with no answer","A question about leadership"],a:0,why:"Leading questions suggest a specific answer."},
+    {type:"mcq",q:"What is qualitative data?",opts:["Data from open-ended questions","Numerical data","Data from closed questions"],a:0,why:"Qualitative data comes from open-ended questions."},
+    {type:"mcq",q:"What does COUNT do?",opts:["Counts values in a range","Counts values meeting criteria","Adds values"],a:0,why:"COUNT: counts the number of values in a range."},
+    {type:"mcq",q:"What does COUNTIF do?",opts:["Counts values meeting specific criteria","Counts all values","Adds values"],a:0,why:"COUNTIF: counts values that meet a specific criteria."},
+    {type:"mcq",q:"What is a material used in phones?",opts:["Gold","Plastic only","Wood"],a:0,why:"Gold, silver, copper and other materials are used in phones."},
+    {type:"mcq",q:"What is one solution to e-waste?",opts:["Recycling","Burning","Burying"],a:0,why:"Recycling is a solution to e-waste."},
+    {type:"fill",q:"__________ is the physical parts of a computer.",opts:["Hardware","Software","Firmware"],a:"Hardware",why:"Hardware: physical parts."},
+    {type:"fill",q:"The __________ is the brain of the computer.",opts:["CPU","RAM","motherboard"],a:"CPU",why:"CPU: the brain of the computer."},
+    {type:"fill",q:"__________ is short-term memory.",opts:["RAM","ROM","CPU"],a:"RAM",why:"RAM: short-term memory."},
+    {type:"fill",q:"__________ technology is worn on the person.",opts:["Wearable","Desktop","Embedded"],a:"Wearable",why:"Wearable technology: worn on the person."},
+    {type:"fill",q:"A __________ is an original graphic representing a brand.",opts:["logo","spreadsheet","formula"],a:"logo",why:"Logo: original graphic representing a brand."},
+    {type:"fill",q:"A __________ is a document for entering numerical data.",opts:["spreadsheet","logo","database"],a:"spreadsheet",why:"Spreadsheet: document for numerical data."},
+    {type:"fill",q:"__________ displays the total of values in a range.",opts:["SUM","AVERAGE","MAX"],a:"SUM",why:"SUM: total of values."},
+    {type:"fill",q:"__________ adjusts a variable to achieve a desired outcome.",opts:["Goal seek","COUNTIF","SUM"],a:"Goal seek",why:"Goal seek adjusts a variable."},
+    {type:"fill",q:"__________ is discarded electronic equipment.",opts:["E-waste","Hardware","Software"],a:"E-waste",why:"E-waste: discarded electronic equipment."},
+    {type:"fill",q:"__________ counts values meeting specific criteria.",opts:["COUNTIF","COUNT","SUM"],a:"COUNTIF",why:"COUNTIF: counts values meeting criteria."},
+    {type:"tf",q:"Hardware is the physical parts of a computer.",a:true,why:"Hardware: physical parts."},
+    {type:"tf",q:"CPU is short-term memory.",a:false,why:"CPU is the processor; RAM is short-term memory."},
+    {type:"tf",q:"RAM stores program data and results.",a:true,why:"RAM: short-term memory storing program data."},
+    {type:"tf",q:"Wearable technology is worn on the person.",a:true,why:"Wearable technology: worn on the person."},
+    {type:"tf",q:"A logo represents a brand.",a:true,why:"Logo: represents a product, brand or service."},
+    {type:"tf",q:"A spreadsheet stores numerical data in rows and columns.",a:true,why:"Spreadsheet: numerical data in rows and columns."},
+    {type:"tf",q:"SUM displays the highest value.",a:false,why:"SUM displays the total; MAX displays the highest."},
+    {type:"tf",q:"AVERAGE displays the average value.",a:true,why:"AVERAGE: average value."},
+    {type:"tf",q:"Goal seek adjusts a variable to achieve a desired outcome.",a:true,why:"Goal seek adjusts a variable."},
+    {type:"tf",q:"E-waste is harmless.",a:false,why:"E-waste contains harmful materials."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Hardware","The physical parts of a computer."],["CPU","Central processing unit — the brain."],["RAM","Short-term memory."],["Motherboard","The main circuit board."],["Wearable technology","Internet-connected devices worn on the person."],["Logo","An original graphic representing a brand."],["Spreadsheet","A document for numerical data in rows and columns."],["Formula","A calculation starting with =."],["Function","A built-in calculation like SUM."],["E-waste","Discarded electronic equipment."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is the difference between hardware and software?",a:"Hardware is the physical parts we can pick up; software is the programs we install on a computer.",why:"A good answer contrasts hardware and software."},
+    {type:"short",q:"What does the CPU do?",a:"The CPU (central processing unit) is the brain of the computer and carries out all processing.",why:"A good answer defines the CPU."},
+    {type:"short",q:"What is wearable technology? Give two examples.",a:"Wearable technology is any internet-connected device worn on the person. Examples: smartwatch, smart glasses.",why:"A good answer defines wearable tech with examples."},
+    {type:"short",q:"What is a logo?",a:"A logo is an original graphic that represents a product, brand or service.",why:"A good answer defines a logo."},
+    {type:"short",q:"What is a spreadsheet?",a:"A spreadsheet is a document that allows the entering of numerical data into rows and columns that can be analysed, sorted, or used for calculations.",why:"A good answer defines a spreadsheet."},
+    {type:"short",q:"What does SUM do? Give an example.",a:"SUM displays the total of all values in a range. Example: =SUM(B2:B10).",why:"A good answer explains SUM with an example."},
+    {type:"short",q:"What is goal seek?",a:"Goal seek adjusts a variable until a desired outcome is created.",why:"A good answer defines goal seek."},
+    {type:"short",q:"What is e-waste and why is it a problem?",a:"E-waste is discarded electronic equipment. It contains rare and toxic materials that can leak into the ground and cause pollution.",why:"A good answer defines e-waste and its harm."},
+    {type:"short",q:"Name three chart types and what they show.",a:"Pie (parts of a whole), line (change over time), bar/column (compare categories).",why:"A good answer names three charts and their uses."},
+    {type:"short",q:"What is the difference between COUNT and COUNTIF?",a:"COUNT counts the number of values in a range; COUNTIF counts values that meet a specific criteria.",why:"A good answer contrasts COUNT and COUNTIF."}
+  ]
+},
+// ---------- UNIT 4 ----------
+{
+  id:4,title:"Analysing Data",
+  sub:"Social media, spreadsheet quality, knowledge/information, sorting and filtering",
+  lessons:[
+    ["Social media","Social media enables chatting, sharing photos/videos, blogging, networking and gaming. Advantages include global connection; disadvantages include fake news, cyberbullying and loss of privacy."],
+    ["What makes a good spreadsheet","A good spreadsheet is easy to follow, has clear headings, uses colour and formatting, avoids overcrowding, and may use multiple sheets and protection."],
+    ["Knowledge, data and information","Data is a value with no meaning on its own. Information is data with meaning. Knowledge is information combined with experience and understanding."],
+    ["Sorting and filtering a spreadsheet","Sorting arranges rows by a column (ascending or descending). Filtering hides rows that do not match a rule."],
+    ["Design techniques for an online advertisement","Effective ads use clear layouts, suitable colours, readable fonts, relevant images, a clear call to action, and consider the target audience."],
+    ["Qualitative and quantitative data","Qualitative data comes from open-ended questions. Quantitative data comes from closed questions and can be counted and analysed."],
+    ["Protecting a spreadsheet","Protecting a sheet prevents accidental editing of important formulas. Use templates as a starting point."],
+    ["Templates","A template is a predesigned spreadsheet for a specific purpose that can be used as a starting point."],
+    ["Visual presentation of data","Charts, infographics and conditional formatting help present data in an informative and visually interesting way."],
+    ["Evaluating data","Check data for accuracy, bias, sample size and appropriateness before drawing conclusions."]
+  ],
+  vocab:[["Social media","Online platforms for connecting and sharing content."],["Cyberbullying","Harmful behaviour online."],["Data","A value with no meaning on its own."],["Information","Data that has meaning."],["Knowledge","Information combined with understanding."],["Sorting","Arranging rows by a column."],["Filtering","Hiding rows that do not match a rule."],["Qualitative data","Data from open-ended questions."],["Quantitative data","Numerical data from closed questions."],["Template","A predesigned spreadsheet for a specific purpose."]],
+  questions:[
+    {type:"mcq",q:"What is social media?",opts:["Online platforms for connecting and sharing","A type of spreadsheet","A hardware component"],a:0,why:"Social media: online platforms for connecting and sharing content."},
+    {type:"mcq",q:"What is a disadvantage of social media?",opts:["Cyberbullying","Global connection","Free use"],a:0,why:"Cyberbullying is a disadvantage."},
+    {type:"mcq",q:"What is cyberbullying?",opts:["Harmful behaviour online","A type of spreadsheet","A chart"],a:0,why:"Cyberbullying: harmful behaviour online."},
+    {type:"mcq",q:"What makes a good spreadsheet?",opts:["Clear headings and easy to follow","Overcrowded with data","No colours"],a:0,why:"A good spreadsheet is easy to follow with clear headings."},
+    {type:"mcq",q:"What is data?",opts:["A value with no meaning on its own","Information with meaning","Knowledge"],a:0,why:"Data: a value that, on its own, has no meaning."},
+    {type:"mcq",q:"What is information?",opts:["Data that has meaning","A raw value","A type of chart"],a:0,why:"Information: data that has meaning."},
+    {type:"mcq",q:"What is knowledge?",opts:["Information combined with understanding","Raw data","A spreadsheet"],a:0,why:"Knowledge: information combined with understanding and experience."},
+    {type:"mcq",q:"What does sorting do?",opts:["Arranges rows by a column","Hides rows","Deletes data"],a:0,why:"Sorting: arranges rows by a column."},
+    {type:"mcq",q:"What does filtering do?",opts:["Hides rows that do not match a rule","Arranges rows","Deletes data"],a:0,why:"Filtering: hides rows that do not match."},
+    {type:"mcq",q:"What is qualitative data?",opts:["Data from open-ended questions","Numerical data","Data from closed questions"],a:0,why:"Qualitative data: from open-ended questions."},
+    {type:"mcq",q:"What is quantitative data?",opts:["Numerical data from closed questions","Data from open-ended questions","Text data"],a:0,why:"Quantitative data: numerical, from closed questions."},
+    {type:"mcq",q:"What does protecting a spreadsheet do?",opts:["Prevents accidental editing","Deletes data","Creates charts"],a:0,why:"Protecting a sheet prevents accidental editing."},
+    {type:"mcq",q:"What is a template?",opts:["A predesigned spreadsheet for a specific purpose","A type of chart","A formula"],a:0,why:"Template: a predesigned spreadsheet."},
+    {type:"mcq",q:"What is an infographic?",opts:["A document conveying information visually","A type of spreadsheet","A chart only"],a:0,why:"Infographic: a document designed to convey information visually."},
+    {type:"mcq",q:"What should an online advertisement consider?",opts:["Target audience","Only colours","Only text"],a:0,why:"Ads should consider the target audience, layout, colours and images."},
+    {type:"mcq",q:"What does COUNTIF do?",opts:["Counts values meeting criteria","Counts all values","Adds values"],a:0,why:"COUNTIF: counts values that meet specific criteria."},
+    {type:"mcq",q:"Why evaluate data?",opts:["To check accuracy and bias","To make it longer","To add colours"],a:0,why:"Evaluate data for accuracy, bias, sample size and appropriateness."},
+    {type:"mcq",q:"What is one benefit of social media?",opts:["Chatting with friends worldwide","Cyberbullying","Fake news"],a:0,why:"Benefit: chatting with friends worldwide."},
+    {type:"mcq",q:"What is a leading question?",opts:["A question that suggests an answer","A question with no answer","A question about leadership"],a:0,why:"Leading questions suggest a specific answer."},
+    {type:"mcq",q:"Why is sample size important?",opts:["It affects how representative the data is","It makes charts bigger","It adds colours"],a:0,why:"Sample size affects how representative the data is."},
+    {type:"fill",q:"__________ media enables online connection and sharing.",opts:["Social","Digital","Mass"],a:"Social",why:"Social media: online connection and sharing."},
+    {type:"fill",q:"__________ is harmful behaviour online.",opts:["Cyberbullying","Social media","Data"],a:"Cyberbullying",why:"Cyberbullying: harmful behaviour online."},
+    {type:"fill",q:"__________ is a value with no meaning on its own.",opts:["Data","Information","Knowledge"],a:"Data",why:"Data: a value with no meaning."},
+    {type:"fill",q:"__________ is data that has meaning.",opts:["Information","Data","Knowledge"],a:"Information",why:"Information: data with meaning."},
+    {type:"fill",q:"__________ is information combined with understanding.",opts:["Knowledge","Data","Information"],a:"Knowledge",why:"Knowledge: information with understanding."},
+    {type:"fill",q:"__________ arranges rows by a column.",opts:["Sorting","Filtering","Protecting"],a:"Sorting",why:"Sorting: arranges rows."},
+    {type:"fill",q:"__________ hides rows that do not match a rule.",opts:["Filtering","Sorting","Protecting"],a:"Filtering",why:"Filtering: hides rows."},
+    {type:"fill",q:"__________ data comes from open-ended questions.",opts:["Qualitative","Quantitative","Numerical"],a:"Qualitative",why:"Qualitative: open-ended questions."},
+    {type:"fill",q:"__________ data is numerical, from closed questions.",opts:["Quantitative","Qualitative","Text"],a:"Quantitative",why:"Quantitative: numerical data."},
+    {type:"fill",q:"A __________ is a predesigned spreadsheet for a specific purpose.",opts:["template","chart","formula"],a:"template",why:"Template: predesigned spreadsheet."},
+    {type:"tf",q:"Social media can connect people globally.",a:true,why:"Benefit: chatting with friends worldwide."},
+    {type:"tf",q:"Cyberbullying is a benefit of social media.",a:false,why:"Cyberbullying is a disadvantage."},
+    {type:"tf",q:"Data has meaning on its own.",a:false,why:"Data has no meaning on its own."},
+    {type:"tf",q:"Information is data with meaning.",a:true,why:"Information: data with meaning."},
+    {type:"tf",q:"Knowledge is information combined with understanding.",a:true,why:"Knowledge: information with understanding."},
+    {type:"tf",q:"Sorting hides rows.",a:false,why:"Sorting arranges rows; filtering hides rows."},
+    {type:"tf",q:"Filtering hides rows that do not match a rule.",a:true,why:"Filtering: hides non-matching rows."},
+    {type:"tf",q:"Qualitative data is numerical.",a:false,why:"Qualitative data comes from open-ended questions, not numerical."},
+    {type:"tf",q:"Protecting a spreadsheet prevents accidental editing.",a:true,why:"Protecting prevents accidental editing."},
+    {type:"tf",q:"Templates can be used as a starting point.",a:true,why:"Templates are predesigned starting points."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Social media","Online platforms for connecting and sharing content."],["Cyberbullying","Harmful behaviour online."],["Data","A value with no meaning on its own."],["Information","Data that has meaning."],["Knowledge","Information combined with understanding."],["Sorting","Arranging rows by a column."],["Filtering","Hiding rows that do not match a rule."],["Qualitative data","Data from open-ended questions."],["Quantitative data","Numerical data from closed questions."],["Template","A predesigned spreadsheet for a specific purpose."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is social media? Give two advantages.",a:"Social media enables online connection and sharing. Advantages: chatting with friends worldwide and meeting new people with similar interests.",why:"A good answer defines social media and gives two advantages."},
+    {type:"short",q:"What is cyberbullying?",a:"Cyberbullying is the use of any Internet technology to send rude, mean or unsuitable messages to another person.",why:"A good answer defines cyberbullying."},
+    {type:"short",q:"What is the difference between data, information and knowledge?",a:"Data is a value with no meaning on its own; information is data with meaning; knowledge is information combined with understanding and experience.",why:"A good answer defines all three."},
+    {type:"short",q:"What is the difference between sorting and filtering?",a:"Sorting arranges rows by a column; filtering hides rows that do not match a rule.",why:"A good answer contrasts sorting and filtering."},
+    {type:"short",q:"What is qualitative data? Give one example.",a:"Qualitative data comes from open-ended questions. Example: 'What is your favourite feature?'",why:"A good answer defines qualitative data with an example."},
+    {type:"short",q:"What is quantitative data? Give one example.",a:"Quantitative data comes from closed questions and can be counted. Example: 'Rate on a scale of 1–5.'",why:"A good answer defines quantitative data with an example."},
+    {type:"short",q:"What makes a good spreadsheet?",a:"A good spreadsheet is easy to follow, has clear headings, uses colour and formatting, avoids overcrowding, and may use multiple sheets.",why:"A good answer lists qualities of a good spreadsheet."},
+    {type:"short",q:"What is a leading question and why should it be avoided?",a:"A leading question suggests a specific answer. It should be avoided because it can bias responses.",why:"A good answer explains leading questions."},
+    {type:"short",q:"What is a template?",a:"A template is a predesigned spreadsheet for a specific purpose that can be used as a starting point.",why:"A good answer defines a template."},
+    {type:"short",q:"Why is sample size important in surveys?",a:"Sample size affects how representative the data is. A small sample may not reflect the wider population accurately.",why:"A good answer explains the importance of sample size."}
+  ]
+},
+// ---------- UNIT 5 ----------
+{
+  id:5,title:"Programming (C)",
+  sub:"Algorithms, turtle programming, iteration, errors, lists and chatbots",
+  lessons:[
+    ["Algorithms and turtle programming","An algorithm is a set of ordered steps. Turtle programming uses commands like forward, backward, left and right to draw shapes."],
+    ["Sequencing and iteration","Sequence means instructions in order. Iteration repeats instructions using loops (for, while)."],
+    ["Programming errors","Syntax errors break the rules of the language. Logic errors produce wrong results. Runtime errors occur while the program runs."],
+    ["Using lists in a Python program","A list stores multiple values under one name. Items are accessed by index (starting at 0). Common operations include append, remove and length."],
+    ["Creating a simple chatbot","A chatbot responds to user input. It uses input(), if/elif/else statements and print() to create a conversation."],
+    ["Variables and input","Variables store values. input() reads user input as a string; int() converts to a number."],
+    ["Selection in Python","if, elif and else choose between paths based on conditions."],
+    ["Loops in Python","for loops repeat a set number of times; while loops repeat while a condition is true."],
+    ["Debugging Python programs","Debugging strategies include tracing, print statements and checking one section at a time."],
+    ["Testing programs","Test with normal, boundary and erroneous data to ensure the program works correctly."]
+  ],
+  vocab:[["Algorithm","Ordered steps to solve a problem."],["Turtle","A programmable drawing tool."],["Sequence","Instructions in order."],["Iteration","Repeating instructions using loops."],["Syntax error","An error that breaks the rules of the language."],["Logic error","An error that produces a wrong result."],["Runtime error","An error that occurs while the program runs."],["List","A data structure storing multiple values."],["Index","The position of an item in a list."],["Chatbot","A program that responds to user input."]],
+  questions:[
+    {type:"mcq",q:"What is an algorithm?",opts:["A set of ordered steps","A type of loop","A Python function"],a:0,why:"Algorithm: a set of ordered steps."},
+    {type:"mcq",q:"What does a turtle do in programming?",opts:["Draws shapes using commands","Stores data","Runs loops"],a:0,why:"Turtle: a programmable drawing tool."},
+    {type:"mcq",q:"What is sequence?",opts:["Instructions in order","Repeating instructions","Choosing between paths"],a:0,why:"Sequence: instructions in order."},
+    {type:"mcq",q:"What is iteration?",opts:["Repeating instructions using loops","Choosing between paths","Storing values"],a:0,why:"Iteration: repeating instructions."},
+    {type:"mcq",q:"What is a syntax error?",opts:["An error that breaks the rules of the language","A wrong result","An error while running"],a:0,why:"Syntax error: breaks the rules of the language."},
+    {type:"mcq",q:"What is a logic error?",opts:["An error that produces a wrong result","An error in spelling","A runtime error"],a:0,why:"Logic error: produces a wrong result."},
+    {type:"mcq",q:"What is a runtime error?",opts:["An error that occurs while the program runs","A spelling error","A logic error"],a:0,why:"Runtime error: occurs while the program runs."},
+    {type:"mcq",q:"What is a list?",opts:["A data structure storing multiple values","A type of loop","A function"],a:0,why:"List: stores multiple values under one name."},
+    {type:"mcq",q:"What is an index?",opts:["The position of an item in a list","A type of loop","A function"],a:0,why:"Index: the position of an item."},
+    {type:"mcq",q:"What does input() do?",opts:["Reads user input","Prints output","Creates a list"],a:0,why:"input() reads user input."},
+    {type:"mcq",q:"What does int() do?",opts:["Converts to a number","Converts to text","Creates a list"],a:0,why:"int() converts to an integer."},
+    {type:"mcq",q:"What does if do?",opts:["Chooses between paths","Repeats instructions","Stores a value"],a:0,why:"if: chooses between paths."},
+    {type:"mcq",q:"What does for do?",opts:["Repeats a set number of times","Chooses between paths","Stores a value"],a:0,why:"for: repeats a set number of times."},
+    {type:"mcq",q:"What does while do?",opts:["Repeats while a condition is true","Repeats a set number","Chooses between paths"],a:0,why:"while: repeats while a condition is true."},
+    {type:"mcq",q:"What is a chatbot?",opts:["A program that responds to user input","A type of turtle","A list"],a:0,why:"Chatbot: a program that responds to user input."},
+    {type:"mcq",q:"What is debugging?",opts:["Finding and fixing errors","Writing code","Testing data"],a:0,why:"Debugging: finding and fixing errors."},
+    {type:"mcq",q:"What is normal test data?",opts:["Data that should work correctly","Data that should fail","Data at the boundary"],a:0,why:"Normal test data should work correctly."},
+    {type:"mcq",q:"What is boundary test data?",opts:["Data at the edge of valid range","Data in the middle","Data that is invalid"],a:0,why:"Boundary test data is at the edge of the valid range."},
+    {type:"mcq",q:"What is erroneous test data?",opts:["Data that should be rejected","Data that should work","Data at the boundary"],a:0,why:"Erroneous test data should be rejected."},
+    {type:"mcq",q:"What does append do to a list?",opts:["Adds an item","Removes an item","Sorts the list"],a:0,why:"append adds an item to a list."},
+    {type:"fill",q:"An __________ is a set of ordered steps.",opts:["algorithm","turtle","loop"],a:"algorithm",why:"Algorithm: a set of ordered steps."},
+    {type:"fill",q:"A __________ draws shapes using commands.",opts:["turtle","list","chatbot"],a:"turtle",why:"Turtle: a programmable drawing tool."},
+    {type:"fill",q:"__________ means instructions in order.",opts:["Sequence","Iteration","Selection"],a:"Sequence",why:"Sequence: instructions in order."},
+    {type:"fill",q:"__________ repeats instructions using loops.",opts:["Iteration","Sequence","Selection"],a:"Iteration",why:"Iteration: repeating instructions."},
+    {type:"fill",q:"A __________ error breaks the rules of the language.",opts:["syntax","logic","runtime"],a:"syntax",why:"Syntax error: breaks language rules."},
+    {type:"fill",q:"A __________ error produces a wrong result.",opts:["logic","syntax","runtime"],a:"logic",why:"Logic error: wrong result."},
+    {type:"fill",q:"A __________ error occurs while the program runs.",opts:["runtime","syntax","logic"],a:"runtime",why:"Runtime error: occurs while running."},
+    {type:"fill",q:"A __________ stores multiple values under one name.",opts:["list","loop","function"],a:"list",why:"List: stores multiple values."},
+    {type:"fill",q:"An __________ is the position of an item in a list.",opts:["index","argument","parameter"],a:"index",why:"Index: position of an item."},
+    {type:"fill",q:"A __________ responds to user input.",opts:["chatbot","turtle","list"],a:"chatbot",why:"Chatbot: responds to user input."},
+    {type:"tf",q:"An algorithm is a set of ordered steps.",a:true,why:"Algorithm: ordered steps."},
+    {type:"tf",q:"A turtle stores data.",a:false,why:"A turtle draws shapes using commands."},
+    {type:"tf",q:"Sequence means repeating instructions.",a:false,why:"Sequence means instructions in order; iteration repeats."},
+    {type:"tf",q:"Iteration repeats instructions.",a:true,why:"Iteration: repeating instructions."},
+    {type:"tf",q:"A syntax error breaks the rules of the language.",a:true,why:"Syntax error: breaks language rules."},
+    {type:"tf",q:"A logic error produces a wrong result.",a:true,why:"Logic error: wrong result."},
+    {type:"tf",q:"A runtime error occurs before the program runs.",a:false,why:"Runtime error occurs while the program runs."},
+    {type:"tf",q:"A list stores multiple values.",a:true,why:"List: stores multiple values."},
+    {type:"tf",q:"An index starts at 1 in Python lists.",a:false,why:"Python list indices start at 0."},
+    {type:"tf",q:"A chatbot responds to user input.",a:true,why:"Chatbot: responds to user input."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Algorithm","Ordered steps to solve a problem."],["Turtle","A programmable drawing tool."],["Sequence","Instructions in order."],["Iteration","Repeating instructions using loops."],["Syntax error","An error that breaks the rules of the language."],["Logic error","An error that produces a wrong result."],["Runtime error","An error that occurs while the program runs."],["List","A data structure storing multiple values."],["Index","The position of an item in a list."],["Chatbot","A program that responds to user input."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is an algorithm?",a:"An algorithm is a set of ordered steps to solve a problem.",why:"A good answer defines an algorithm."},
+    {type:"short",q:"What is turtle programming?",a:"Turtle programming uses commands like forward, backward, left and right to draw shapes on screen.",why:"A good answer defines turtle programming."},
+    {type:"short",q:"What is the difference between sequence and iteration?",a:"Sequence means instructions are carried out in order; iteration repeats instructions using loops.",why:"A good answer contrasts sequence and iteration."},
+    {type:"short",q:"What is the difference between a syntax error and a logic error?",a:"A syntax error breaks the rules of the language; a logic error produces a wrong result but the program still runs.",why:"A good answer contrasts syntax and logic errors."},
+    {type:"short",q:"What is a list? Give one example.",a:"A list stores multiple values under one name. Example: scores = [10, 20, 30].",why:"A good answer defines a list with an example."},
+    {type:"short",q:"What is an index?",a:"An index is the position of an item in a list, used to access that item. In Python, indices start at 0.",why:"A good answer defines an index."},
+    {type:"short",q:"What does input() do?",a:"input() reads user input as a string.",why:"A good answer explains input()."},
+    {type:"short",q:"What does int() do?",a:"int() converts a value to an integer.",why:"A good answer explains int()."},
+    {type:"short",q:"What is a chatbot?",a:"A chatbot is a program that responds to user input, often using if/elif/else statements and print().",why:"A good answer defines a chatbot."},
+    {type:"short",q:"Name three types of test data.",a:"Normal, boundary and erroneous test data.",why:"A good answer names three types."}
+  ]
+},
+// ---------- UNIT 6 ----------
+{
+  id:6,title:"Software & Communication",
+  sub:"Utility programs, internet hardware and wireless communications technology",
+  lessons:[
+    ["Utility programs","Utility programs help maintain and manage a computer system. Examples include antivirus, disk defragmenter, backup software, compression tools and firewalls."],
+    ["Multitasking","Multitasking allows two or more applications to run at the same time. The operating system manages this by sharing CPU time."],
+    ["Internet hardware","Internet hardware includes routers, switches, modems, servers and cables. A router directs data between networks; a modem connects to an ISP."],
+    ["Wireless communications technology","Wireless technology uses radio waves, microwaves or infrared to transmit data without cables. Examples include Wi-Fi, Bluetooth, mobile networks and satellites."],
+    ["Wi-Fi and Bluetooth","Wi-Fi connects devices to a local network and the Internet. Bluetooth connects devices over short distances (e.g. headphones to phone)."],
+    ["Mobile networks","Mobile networks use cell towers to provide voice and data. Generations: 2G, 3G, 4G, 5G."],
+    ["Satellite communication","Satellites orbit the Earth and relay signals. They enable GPS, satellite TV and communication in remote areas."],
+    ["Network security","Firewalls filter traffic; encryption protects data; strong passwords and updates help secure networks."],
+    ["Cloud computing","Cloud computing stores data and runs programs over the Internet. Advantages include access anywhere; disadvantages include dependence on connection and security risks."],
+    ["Choosing communication methods","Choose based on range, bandwidth, cost, security and convenience. Wi-Fi for local, mobile data for wide area, Bluetooth for short range."]
+  ],
+  vocab:[["Utility program","Software that maintains and manages a computer."],["Multitasking","Running two or more applications at the same time."],["Router","A device that directs data between networks."],["Modem","A device that connects to an ISP."],["Wi-Fi","A wireless technology for local networks."],["Bluetooth","A short-range wireless technology."],["Mobile network","A network using cell towers."],["Satellite","A device orbiting Earth that relays signals."],["Firewall","Filters network traffic."],["Cloud computing","Storing data and running programs over the Internet."]],
+  questions:[
+    {type:"mcq",q:"What is a utility program?",opts:["Software that maintains and manages a computer","A type of hardware","A web browser"],a:0,why:"Utility program: maintains and manages a computer."},
+    {type:"mcq",q:"What is multitasking?",opts:["Running two or more applications at the same time","Running one application","Deleting files"],a:0,why:"Multitasking: running two or more applications at the same time."},
+    {type:"mcq",q:"What does a router do?",opts:["Directs data between networks","Stores files","Prints documents"],a:0,why:"Router: directs data between networks."},
+    {type:"mcq",q:"What does a modem do?",opts:["Connects to an ISP","Directs data","Filters traffic"],a:0,why:"Modem: connects to an ISP."},
+    {type:"mcq",q:"What is Wi-Fi?",opts:["A wireless technology for local networks","A wired connection","A satellite"],a:0,why:"Wi-Fi: wireless technology for local networks."},
+    {type:"mcq",q:"What is Bluetooth used for?",opts:["Short-range wireless connections","Long-range connections","Satellite communication"],a:0,why:"Bluetooth: short-range wireless technology."},
+    {type:"mcq",q:"What is a mobile network?",opts:["A network using cell towers","A wired network","A satellite network"],a:0,why:"Mobile network: uses cell towers."},
+    {type:"mcq",q:"What is a satellite?",opts:["A device orbiting Earth that relays signals","A type of router","A firewall"],a:0,why:"Satellite: orbits Earth and relays signals."},
+    {type:"mcq",q:"What does a firewall do?",opts:["Filters network traffic","Stores data","Prints documents"],a:0,why:"Firewall: filters network traffic."},
+    {type:"mcq",q:"What is cloud computing?",opts:["Storing data and running programs over the Internet","Storing data locally","Using a wired network"],a:0,why:"Cloud computing: storing data and running programs over the Internet."},
+    {type:"mcq",q:"What is an advantage of cloud computing?",opts:["Access anywhere","No Internet needed","No security risks"],a:0,why:"Advantage: access anywhere."},
+    {type:"mcq",q:"What is a disadvantage of cloud computing?",opts:["Dependence on Internet connection","Files are always lost","No collaboration"],a:0,why:"Disadvantage: dependence on Internet connection."},
+    {type:"mcq",q:"Which is a utility program?",opts:["Antivirus","Word processor","Web browser"],a:0,why:"Antivirus is a utility program."},
+    {type:"mcq",q:"Which is a short-range wireless technology?",opts:["Bluetooth","Wi-Fi","Mobile network"],a:0,why:"Bluetooth is short-range."},
+    {type:"mcq",q:"Which is a long-range wireless technology?",opts:["Mobile network","Bluetooth","Infrared"],a:0,why:"Mobile network is long-range."},
+    {type:"mcq",q:"What does encryption do?",opts:["Protects data","Deletes data","Compresses data"],a:0,why:"Encryption protects data."},
+    {type:"mcq",q:"What does a switch do?",opts:["Connects devices within a network","Connects to an ISP","Relays satellite signals"],a:0,why:"Switch: connects devices within a network."},
+    {type:"mcq",q:"What does a server do?",opts:["Provides services or data","Connects to an ISP","Filters traffic"],a:0,why:"Server: provides services or data."},
+    {type:"mcq",q:"What is 5G?",opts:["A mobile network generation","A Wi-Fi standard","A satellite"],a:0,why:"5G is a mobile network generation."},
+    {type:"mcq",q:"Why update software?",opts:["To fix security problems","To make files bigger","To slow down the computer"],a:0,why:"Updates fix security problems."},
+    {type:"fill",q:"A __________ program maintains and manages a computer.",opts:["utility","application","system"],a:"utility",why:"Utility program: maintains and manages."},
+    {type:"fill",q:"__________ allows two or more applications to run at the same time.",opts:["Multitasking","Multiprocessing","Networking"],a:"Multitasking",why:"Multitasking: running multiple applications."},
+    {type:"fill",q:"A __________ directs data between networks.",opts:["router","modem","switch"],a:"router",why:"Router: directs data between networks."},
+    {type:"fill",q:"A __________ connects to an ISP.",opts:["modem","router","switch"],a:"modem",why:"Modem: connects to an ISP."},
+    {type:"fill",q:"__________ is a wireless technology for local networks.",opts:["Wi-Fi","Bluetooth","5G"],a:"Wi-Fi",why:"Wi-Fi: local wireless networks."},
+    {type:"fill",q:"__________ is a short-range wireless technology.",opts:["Bluetooth","Wi-Fi","Satellite"],a:"Bluetooth",why:"Bluetooth: short-range wireless."},
+    {type:"fill",q:"A __________ network uses cell towers.",opts:["mobile","wired","satellite"],a:"mobile",why:"Mobile network: uses cell towers."},
+    {type:"fill",q:"A __________ orbits Earth and relays signals.",opts:["satellite","router","modem"],a:"satellite",why:"Satellite: orbits Earth and relays signals."},
+    {type:"fill",q:"A __________ filters network traffic.",opts:["firewall","router","modem"],a:"firewall",why:"Firewall: filters network traffic."},
+    {type:"fill",q:"__________ computing stores data and runs programs over the Internet.",opts:["Cloud","Grid","Edge"],a:"Cloud",why:"Cloud computing: over the Internet."},
+    {type:"tf",q:"A utility program maintains and manages a computer.",a:true,why:"Utility program: maintains and manages."},
+    {type:"tf",q:"Multitasking means running one application.",a:false,why:"Multitasking means running two or more applications at the same time."},
+    {type:"tf",q:"A router directs data between networks.",a:true,why:"Router: directs data between networks."},
+    {type:"tf",q:"A modem connects to an ISP.",a:true,why:"Modem: connects to an ISP."},
+    {type:"tf",q:"Wi-Fi is a short-range wireless technology.",a:false,why:"Wi-Fi is for local networks; Bluetooth is short-range."},
+    {type:"tf",q:"Bluetooth is a short-range wireless technology.",a:true,why:"Bluetooth: short-range."},
+    {type:"tf",q:"A mobile network uses cell towers.",a:true,why:"Mobile network: uses cell towers."},
+    {type:"tf",q:"A satellite orbits Earth and relays signals.",a:true,why:"Satellite: orbits Earth and relays signals."},
+    {type:"tf",q:"A firewall stores data.",a:false,why:"A firewall filters network traffic."},
+    {type:"tf",q:"Cloud computing requires an Internet connection.",a:true,why:"Cloud computing depends on an Internet connection."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Utility program","Software that maintains and manages a computer."],["Multitasking","Running two or more applications at the same time."],["Router","A device that directs data between networks."],["Modem","A device that connects to an ISP."],["Wi-Fi","A wireless technology for local networks."],["Bluetooth","A short-range wireless technology."],["Mobile network","A network using cell towers."],["Satellite","A device orbiting Earth that relays signals."],["Firewall","Filters network traffic."],["Cloud computing","Storing data and running programs over the Internet."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is a utility program? Give two examples.",a:"A utility program maintains and manages a computer. Examples: antivirus and backup software.",why:"A good answer defines utility programs with examples."},
+    {type:"short",q:"What is multitasking?",a:"Multitasking allows two or more applications to run at the same time, managed by the operating system.",why:"A good answer defines multitasking."},
+    {type:"short",q:"What does a router do?",a:"A router directs data between networks and connects a home network to the Internet.",why:"A good answer defines a router."},
+    {type:"short",q:"What is the difference between Wi-Fi and Bluetooth?",a:"Wi-Fi is for local networks and can connect to the Internet; Bluetooth is for short-range connections between devices.",why:"A good answer contrasts Wi-Fi and Bluetooth."},
+    {type:"short",q:"What is a mobile network?",a:"A mobile network uses cell towers to provide voice and data communication over a wide area.",why:"A good answer defines a mobile network."},
+    {type:"short",q:"What is a satellite used for?",a:"Satellites orbit the Earth and relay signals for GPS, satellite TV and communication in remote areas.",why:"A good answer explains satellite uses."},
+    {type:"short",q:"What does a firewall do?",a:"A firewall filters network traffic to block threats.",why:"A good answer defines a firewall."},
+    {type:"short",q:"What is cloud computing?",a:"Cloud computing stores data and runs programs over the Internet, allowing access from anywhere with a connection.",why:"A good answer defines cloud computing."},
+    {type:"short",q:"Give one advantage and one disadvantage of cloud computing.",a:"Advantage: access anywhere. Disadvantage: dependence on an Internet connection.",why:"A good answer gives one advantage and one disadvantage."},
+    {type:"short",q:"Why is encryption important on networks?",a:"Encryption protects data in transit so that unauthorised users cannot read it.",why:"A good answer explains the importance of encryption."}
+  ]
+}
+];
+
+let units = embeddedUnits, active = 1, view = 'home', filter = 'all', exam = null, timer = null;
+let progress = JSON.parse(localStorage.getItem('jsProgress_Y8') || '{}');
+const $ = s => document.querySelector(s);
+
+applyLoginState();
+render();
+
+function go(v) {
+  if (!studentName) { loginOverlay.classList.remove('hidden'); return; }
+  view = v;
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+  $('#hero').classList.toggle('hidden', v !== 'home');
+  $('.stats').classList.toggle('hidden', v !== 'home');
+  render();
+  scrollTo({top:0,behavior:'smooth'});
+  $('nav').classList.remove('open');
+}
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => go(b.dataset.view));
+$('#menu').onclick = () => $('nav').classList.toggle('open');
+
+function tabs() {
+  return '<div class="tabs">' + units.map(u =>
+    `<button class="${u.id===active?'active':''}" onclick="active=${u.id};render()">${u.id}. ${u.title}</button>`
+  ).join('') + '</div>';
+}
+
+function render() {
+  if (!units.length || !studentName) return;
+  const u = units[active-1], v = $('#view');
+
+  if (view === 'home') {
+    v.innerHTML = `
+      <div class="head">
+        <label>YOUR LEARNING PATH</label>
+        <h2>Welcome back, ${escapeHtml(studentName)} 👋</h2>
+        <p class="muted">Choose a unit to study, practise, or take a timed assessment.</p>
+      </div>
+      <div class="grid">${units.map(x => `
+        <article class="card">
+          <div class="num">UNIT ${x.id}</div>
+          <h3>${x.title}</h3>
+          <p>${x.sub}</p>
+          <div>
+            <button onclick="active=${x.id};go('study')">Study notes ↗</button>
+            <button onclick="active=${x.id};go('exam')">Take exam →</button>
+          </div>
+        </article>`).join('')}
+      </div>
+      <div class="panel">
+        <label>EXAM STRUCTURE</label>
+        <h2>80 marks • 60 minutes</h2>
+        <p class="muted">20 multiple choice (20 marks) + 10 fill blanks (10) + 10 true/false (10) + 1 matching task worth 10 marks (10 pairs) + 10 short answers (30 marks; 3 each).</p>
+      </div>`;
+  }
+  else if (view === 'study') {
+    v.innerHTML = `
+      <div class="head">
+        <label>STUDY LIBRARY</label>
+        <h2>Study Notes</h2>
+        <p>Clear explanations and key vocabulary.</p>
+      </div>
+      ${tabs()}
+      <div class="panel">
+        <label>UNIT ${u.id}</label>
+        <h2>${u.title}</h2>
+        <p class="muted">${u.sub}</p>
+        ${u.lessons.map((l,i) => `
+          <article class="lesson">
+            <label>LESSON ${i+1}</label>
+            <h3>${l[0]}</h3>
+            <p>${l[1]}</p>
+          </article>`).join('')}
+      </div>
+      <div class="panel">
+        <label>KEY VOCABULARY</label>
+        <div class="vocab">${u.vocab.map(x => `<div class="word"><b>${x[0]}</b>${x[1]}</div>`).join('')}</div>
+      </div>
+      <div class="callout">Study tip: explain each key idea in your own words, then practise without looking at the notes.</div>
+      <button class="gold" onclick="go('practice')">Practise this unit →</button>
+      <button onclick="go('exam')">Start exam</button>`;
+  }
+  else if (view === 'practice') {
+    const qs = u.questions.filter(q => filter === 'all' || q.type === filter);
+    v.innerHTML = `
+      <div class="head">
+        <label>PRACTICE STUDIO</label>
+        <h2>Workbook-style Practice</h2>
+        <p>Original questions aligned with unit themes. Check answers to see explanations.</p>
+      </div>
+      ${tabs()}
+      <div class="tabs">
+        ${[['all','All types'],['mcq','Multiple choice'],['fill','Fill blanks'],['tf','True / false'],['match','Matching'],['short','Short answer']].map(a =>
+          `<button class="${filter===a[0]?'active':''}" onclick="filter='${a[0]}';render()">${a[1]}</button>`
+        ).join('')}
+      </div>
+      <div class="callout">These are newly written practice questions, not a verbatim reproduction of Pearson workbook pages.</div>
+      <form id="pf">
+        ${qs.map((q,i) => qhtml(q,i,'p')).join('')}
+        <button class="gold">Check answers</button>
+      </form>
+      <div id="pr"></div>`;
+    $('#pf').onsubmit = e => {
+      e.preventDefault();
+      let c = 0;
+      qs.forEach((q,i) => {
+        const a = getanswer(q,i,'p'), ok = check(q,a);
+        if(ok) c++;
+        const el = $('#fbp'+i);
+        el.className = 'feedback ' + (ok?'good':'bad');
+        el.innerHTML = `<b>${ok?'Correct':'Review this answer'}.</b> ${answertext(q)} ${q.why}`;
+      });
+      $('#pr').innerHTML = `<div class="panel"><h2>${c}/${qs.length} correct</h2><div class="bar"><span style="width:${Math.round(c/qs.length*100)}%"></span></div><p class="muted">Review the feedback and try again.</p></div>`;
+    };
+  }
+  else if (view === 'exam') {
+    if (exam && !exam.done && exam.uid === active) { renderExam(); return; }
+    v.innerHTML = `
+      <div class="head">
+        <label>TIMED ASSESSMENT</label>
+        <h2>Unit Examination</h2>
+        <p>60-minute assessment with instant feedback.</p>
+      </div>
+      ${tabs()}
+      <div class="panel">
+        <h2>${u.title}</h2>
+        <div class="three">
+          <div><b>51</b><span>Tasks / 60 question parts</span></div>
+          <div><b>80</b><span>Total marks</span></div>
+          <div><b>60 min</b><span>Time allowed</span></div>
+        </div>
+        <p class="muted">20 MCQ + 10 fill blanks + 10 true/false + one matching task worth 10 marks (10 pairs) + 10 short answers = 60 question parts and 80 marks. Matching gives 10 marks when all ten pairs are correct.</p>
+        <button class="gold" onclick="startExam()">Begin exam →</button>
+      </div>`;
+  }
+  else if (view === 'progress') {
+    const done = units.filter(x => progress[x.id]);
+    v.innerHTML = `
+      <div class="head">
+        <label>LEARNING DASHBOARD</label>
+        <h2>${escapeHtml(studentName)}'s Progress</h2>
+        <p>Scores are saved only in this browser.</p>
+      </div>
+      <div class="three">
+        <div><b>${done.length}/6</b><span>Units attempted</span></div>
+        <div><b>${done.length?Math.round(done.reduce((s,x)=>s+progress[x.id].pct,0)/done.length):0}%</b><span>Average score</span></div>
+        <div><b>${done.filter(x=>progress[x.id].pct>=80).length}</b><span>Units at 80%+</span></div>
+      </div>
+      <div class="grid">${units.map(x => `
+        <article class="card">
+          <h3>${x.title}</h3>
+          <p>${progress[x.id]?`Last score: ${progress[x.id].pct}% (${progress[x.id].marks}/80)`:'Not attempted yet.'}</p>
+          <button onclick="active=${x.id};go('exam')">${progress[x.id]?'Retake':'Start'} exam →</button>
+        </article>`).join('')}
+      </div>
+      <button onclick="if(confirm('Clear saved scores?')){progress={};localStorage.removeItem('jsProgress_Y8');render()}">Reset saved progress</button>
+      <p class="muted">This front-end demo does not send scores to a teacher or server.</p>`;
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function qhtml(q,i,p) {
+  let h = '';
+  if (q.type === 'mcq') {
+    h = '<div class="options">' + q.opts.map((o,j) =>
+      `<label class="opt"><input type="radio" name="${p}${i}" value="${j}"> <span>${String.fromCharCode(65+j)}. ${o}</span></label>`
+    ).join('') + '</div>';
+  }
+  if (q.type === 'fill') {
+    h = `<p class="muted">Word bank: ${q.opts.join(' · ')}</p><input type="text" name="${p}${i}" placeholder="Type your answer">`;
+  }
+  if (q.type === 'tf') {
+    h = `<div class="options">
+      <label class="opt"><input type="radio" name="${p}${i}" value="true"> <span>True</span></label>
+      <label class="opt"><input type="radio" name="${p}${i}" value="false"> <span>False</span></label>
+    </div>`;
+  }
+  if (q.type === 'match') {
+    h = '<div class="pairs">' + q.pairs.map((x,j) =>
+      `<div class="word"><b>${j+1}. ${x[0]}</b>
+        <select name="${p}${i}_${j}">
+          <option value="">Choose definition…</option>
+          ${q.pairs.map((y,k) => `<option value="${k}">${y[1]}</option>`).join('')}
+        </select>
+      </div>`
+    ).join('') + '</div>';
+  }
+  if (q.type === 'short') {
+    h = `<textarea name="${p}${i}" rows="4" placeholder="Answer in your own words"></textarea>`;
+  }
+  const marks = q.type === 'short' ? '3 marks' : q.type === 'match' ? '10 marks' : '1 mark';
+  return `<article class="q">
+    <div class="qtop">QUESTION ${i+1} · ${q.type.toUpperCase()} · ${marks}</div>
+    <h3>${q.q}</h3>
+    ${h}
+    <div id="fb${p}${i}"></div>
+  </article>`;
+}
+
+function getanswer(q,i,p) {
+  if (q.type === 'match') return q.pairs.map((_,j) => $(`[name="${p}${i}_${j}"]`).value);
+  if (q.type === 'short' || q.type === 'fill') return $(`[name="${p}${i}"]`)?.value || '';
+  return $(`[name="${p}${i}"]:checked`)?.value;
+}
+
+function norm(s) {
+  return String(s ?? '').toLowerCase().trim().replace(/[.,!?;:'“”]/g,'').replace(/\s+/g,' ');
+}
+
+function check(q,a) {
+  if (q.type === 'mcq') return a !== undefined && Number(a) === q.a;
+  if (q.type === 'tf') return a !== undefined && (a === 'true') === q.a;
+  if (q.type === 'fill') return norm(a) === norm(q.a);
+  if (q.type === 'match') return Array.isArray(a) && a.every((x,i) => x !== '' && Number(x) === i);
+  const words = norm(q.a).split(' ').filter(w => w.length > 4);
+  return norm(a).length > 20 && words.filter(w => norm(a).includes(w)).length >= 1;
+}
+
+function answertext(q) {
+  if (q.type === 'mcq') return `Correct answer: ${q.opts[q.a]}.`;
+  if (q.type === 'tf') return `Correct answer: ${q.a?'True':'False'}.`;
+  if (q.type === 'fill') return `Suggested answer: ${q.a}.`;
+  if (q.type === 'match') return 'All ten pairs must be correct for full marks.';
+  return `Model answer: ${q.a}`;
+}
+
+function correctAnswerText(q) {
+  if (q.type === 'mcq') return `${String.fromCharCode(65 + q.a)}. ${q.opts[q.a]}`;
+  if (q.type === 'tf') return q.a ? 'True' : 'False';
+  if (q.type === 'fill') return q.a;
+  if (q.type === 'match') return q.pairs.map((p, j) => `${j+1}. ${p[0]} → ${p[1]}`).join('<br>');
+  if (q.type === 'short') return q.a;
+  return '';
+}
+
+function studentAnswerText(q, a) {
+  if (q.type === 'mcq') {
+    if (a === undefined || a === '' || a === null) return '<em>(No answer)</em>';
+    const idx = Number(a);
+    return `${String.fromCharCode(65 + idx)}. ${q.opts[idx]}`;
+  }
+  if (q.type === 'tf') {
+    if (a === undefined || a === '') return '<em>(No answer)</em>';
+    return a === 'true' ? 'True' : 'False';
+  }
+  if (q.type === 'fill') return (a || '').trim() ? escapeHtml(a) : '<em>(No answer)</em>';
+  if (q.type === 'match') {
+    if (!Array.isArray(a)) return '<em>(No answer)</em>';
+    return q.pairs.map((p, j) => {
+      const sel = a[j];
+      const def = (sel !== '' && sel !== undefined && sel !== null) ? q.pairs[Number(sel)]?.[1] : '<em>(not selected)</em>';
+      const correctDef = q.pairs[j][1];
+      const ok = sel !== '' && Number(sel) === j;
+      return `<span style="color:${ok ? 'var(--good)' : 'var(--bad)'}">${j+1}. ${p[0]} → ${def}${!ok ? ` <span style="color:#a03c34;font-size:13px">(should be: ${correctDef})</span>` : ''}</span>`;
+    }).join('<br>');
+  }
+  if (q.type === 'short') return (a || '').trim() ? escapeHtml(a) : '<em>(No answer)</em>';
+  return '<em>(No answer)</em>';
+}
+
+function startExam() {
+  exam = {uid:active, qs:units[active-1].questions, idx:0, answers:{}, left:3600, done:false};
+  if (timer) clearInterval(timer);
+  timer = setInterval(() => {
+    if (!exam || exam.done) return;
+    exam.left--;
+    const t = $('#timer');
+    if (t) t.textContent = fmt(exam.left);
+    if (exam.left <= 0) finishExam(true);
+  }, 1000);
+  renderExam();
+}
+
+function fmt(n) {
+  return `${String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')}:${String(Math.max(0,n)%60).padStart(2,'0')}`;
+}
+
+function save() {
+  const e = exam, q = e.qs[e.idx];
+  e.answers[e.idx] = getanswer(q, e.idx, 'e');
+}
+
+function renderExam() {
+  const e = exam, q = e.qs[e.idx];
+  $('#view').innerHTML = `
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap">
+        <div>
+          <label>UNIT ${e.uid} EXAM · ${escapeHtml(studentName)}</label>
+          <h2>${units[e.uid-1].title}</h2>
+          <p class="muted">Task ${e.idx+1} of ${e.qs.length}</p>
+        </div>
+        <div class="timer" id="timer">${fmt(e.left)}</div>
+      </div>
+      <div class="bar"><span style="width:${(e.idx+1)/e.qs.length*100}%"></span></div>
+      <form id="ef">${qhtml(q, e.idx, 'e')}</form>
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+        <button ${e.idx===0?'disabled':''} onclick="save();exam.idx--;renderExam()">← Previous</button>
+        <span class="muted">${Object.keys(e.answers).length} answered</span>
+        ${e.idx < e.qs.length-1
+          ? '<button class="gold" onclick="save();exam.idx++;renderExam()">Next →</button>'
+          : '<button class="gold" onclick="save();if(confirm(\'Submit exam?\'))finishExam(false)">Submit exam</button>'}
+      </div>
+      <p class="muted" style="margin-top:14px">Keep this page open until you submit.</p>
+    </div>`;
+  const a = e.answers[e.idx];
+  if (a !== undefined) {
+    if (q.type === 'match') a.forEach((x,j) => { const el = $(`[name="e${e.idx}_${j}"]`); if(el) el.value = x; });
+    else if (q.type === 'fill' || q.type === 'short') { const el = $(`[name="e${e.idx}"]`); if(el) el.value = a; }
+    else {
+      const el = $(`[name="e${e.idx}"][value="${a}"]`);
+      if (el) el.checked = true;
+    }
+  }
+}
+
+function finishExam(auto) {
+  if (!exam || exam.done) return;
+  if (timer) clearInterval(timer);
+  exam.done = true;
+  const e = exam;
+  let marks = 0, rows = [];
+  e.qs.forEach((q,i) => {
+    const a = e.answers[i];
+    let m = 0, ok = false, max = 1;
+    if (q.type === 'mcq' || q.type === 'fill' || q.type === 'tf') { ok = check(q,a); m = ok?1:0; max = 1; }
+    else if (q.type === 'match') { ok = check(q,a||[]); m = ok?10:0; max = 10; }
+    else { ok = check(q,a); m = ok?3:0; max = 3; }
+    marks += m;
+    rows.push({q, a, m, ok, max});
+  });
+  const pct = Math.round(marks/80*100);
+  progress[e.uid] = {marks,pct};
+  localStorage.setItem('jsProgress_Y8', JSON.stringify(progress));
+  $('#view').innerHTML = `
+    <div class="panel">
+      <label>EXAM COMPLETE ${auto?'• TIME EXPIRED':''}</label>
+      <h2>${escapeHtml(studentName)}'s Results</h2>
+      <div class="result">${marks} <span style="font-size:24px;color:#777">/ 80</span></div>
+      <p class="muted">${pct}% provisional score. Short-answer marking is a simple automated estimate; compare your response with the model answer.</p>
+      <div class="three">
+        <div><b>${pct}%</b><span>Score</span></div>
+        <div><b>${rows.filter(x=>x.ok).length}</b><span>Fully correct</span></div>
+        <div><b>${fmt(e.left)}</b><span>Time left</span></div>
+      </div>
+      <p style="margin-top:18px">
+        <button onclick="active=${e.uid};go('study')">Review notes</button>
+        <button class="gold" onclick="active=${e.uid};go('exam')">Try again</button>
+      </p>
+    </div>
+    <div class="head">
+      <label>DETAILED ANSWER REVIEW</label>
+      <h2>Corrections and Explanations</h2>
+      <p class="muted">Each question shows your answer, the correct answer, and the reason / explanation.</p>
+    </div>
+    ${rows.map((x,j) => `
+      <article class="q review-q">
+        <div class="qtop">
+          QUESTION ${j+1} · ${x.m} / ${x.max} MARKS · 
+          <span class="${x.ok?'text-good':'text-bad'}">${x.ok?'✓ Correct':'✗ Incorrect'}</span>
+        </div>
+        <h3>${x.q.q}</h3>
+        <div class="review-block">
+          <div class="review-line">
+            <span class="review-label">Your answer</span>
+            <span class="review-ans ${x.ok?'good':'bad'}">${studentAnswerText(x.q, x.a)}</span>
+          </div>
+          ${!x.ok ? `
+          <div class="review-line">
+            <span class="review-label">Correct answer</span>
+            <span class="review-ans correct">${correctAnswerText(x.q)}</span>
+          </div>` : ''}
+          <div class="review-why">
+            <b>Why / explanation:</b> ${x.q.why}
+          </div>
+        </div>
+      </article>`).join('')}`;
+  scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
